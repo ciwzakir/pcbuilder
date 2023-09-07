@@ -12,7 +12,7 @@ const Navbar = () => {
         justifyContent: "space-between",
       }}
     >
-      <div className="demo-logo">
+      <div className="navbar-style">
         <Link
           href="/"
           style={{
@@ -21,46 +21,29 @@ const Navbar = () => {
             fontSize: "25px",
           }}
         >
-          NEXT AUTH
+          PC Builder
         </Link>
       </div>
       <Menu
         theme="dark"
         mode="horizontal"
         style={{
-          width: "20%",
+          width: "25%",
           display: "flex",
           fontSize: "20px",
           justifyContent: "space-between",
         }}
       >
-        <Link style={{ textDecoration: "none", color: "white" }} href="/create">
-          <items>Create</items>
+        <Link style={{ textDecoration: "none", color: "white" }} href="/">
+          <items> Home</items>
         </Link>
         <Link
           style={{ textDecoration: "none", color: "white" }}
-          href="/categoties"
+          href="/categories"
         >
           <items> Categories</items>
         </Link>
-        <Link style={{ textDecoration: "none", color: "white" }} href="/allpc">
-          <items> All PC</items>
-        </Link>
-        <Link style={{ textDecoration: "none", color: "white" }} href="/about">
-          <items>About</items>
-        </Link>
-        <Link
-          style={{ textDecoration: "none", color: "white" }}
-          href="/contact"
-        >
-          <items>Contact</items>
-        </Link>
-        <Link
-          style={{ textDecoration: "none", color: "white" }}
-          href="/profile"
-        >
-          <items>Profile</items>
-        </Link>
+
         {session?.user ? (
           <items>
             <Button type="primary" danger onClick={() => signOut()}>
@@ -75,6 +58,11 @@ const Navbar = () => {
             <items>Login</items>
           </Link>
         )}
+        <Link href="/pcbuild">
+          <items>
+            <Button type="primary">PC Builder</Button>
+          </items>
+        </Link>
       </Menu>
     </Header>
   );

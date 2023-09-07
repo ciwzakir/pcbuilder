@@ -6,8 +6,7 @@ const { Meta } = Card;
 
 const Welcome = () => {
   const { data: session } = useSession();
-  // const [user, loading, error] = useAuthState(auth);
-  //  console.log(user, "welcome Page");
+
   return (
     <Card
       hoverable
@@ -21,8 +20,6 @@ const Welcome = () => {
       <p> User Name : {session?.user?.name}</p>
       <p> User Email : {session?.user?.email}</p>
       <p> </p>
-      {/* <p> User Email : {user?.email}</p>
-      <p> User Name : {user?.displayName}</p> */}
     </Card>
   );
 };

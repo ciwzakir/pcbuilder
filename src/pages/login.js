@@ -36,7 +36,6 @@ const LoginPage = () => {
               })
             }
           />
-          <LinkedinOutlined onClick={() => signIn("linkedin")} />
         </div>
         <hr />
       </div>

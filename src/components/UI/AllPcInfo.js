@@ -4,11 +4,13 @@ import {
   ArrowRightOutlined,
   CommentOutlined,
   ProfileOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
 
 const AllPcInfo = ({ allPcData }) => {
   const { Meta } = Card;
+
   const shuffledData = allPcData
     .map((item) => ({ item, rand: Math.random() }))
     .sort((a, b) => a.rand - b.rand)
@@ -24,7 +26,7 @@ const AllPcInfo = ({ allPcData }) => {
           margin: "30px 0px",
         }}
       >
-        #TODAY Updates
+        # Our Recent Products (6)
       </h1>
       <Row
         gutter={{
@@ -34,7 +36,7 @@ const AllPcInfo = ({ allPcData }) => {
           lg: 32,
         }}
       >
-        {shuffledData?.map((pc) => (
+        {shuffledData.map((pc) => (
           <Col key={pc.id} className="gutter-row" span={8}>
             <Card
               hoverable
@@ -84,18 +86,16 @@ const AllPcInfo = ({ allPcData }) => {
                 }}
               >
                 <span>
-                  <CommentOutlined /> {pc?.category}
+                  <CommentOutlined /> Categories : {pc?.category}
                 </span>
                 <span>
-                  <ProfileOutlined /> {pc?.status}
+                  <ShoppingOutlined /> Status : {pc?.status}
+                </span>
+                <span>
+                  <ShoppingOutlined /> Ratings : {pc?.average_rating}
                 </span>
               </p>
 
-              <p style={{ fontSize: "15px" }}>
-                {pc?.description.length > 100
-                  ? pc?.description.slice(0, 120) + "..."
-                  : pc?.description}
-              </p>
               <Link href={`/pc/${pc?.id}`}>
                 <p
                   style={{

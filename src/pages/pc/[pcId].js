@@ -85,10 +85,10 @@ const PcDetails = ({ singleItemOfPc }) => {
           }}
         >
           <span>
-            <CommentOutlined /> {singleItemOfPc?.status}
+            <CommentOutlined /> Stock Status : {singleItemOfPc?.status}
           </span>
           <span>
-            <ProfileOutlined /> {singleItemOfPc?.average_rating}
+            <ProfileOutlined /> Ratings : {singleItemOfPc?.average_rating}
           </span>
         </div>
       </Col>

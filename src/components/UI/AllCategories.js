@@ -2,17 +2,22 @@ import { Card, Col, Row } from "antd";
 import Image from "next/image";
 import {
   ArrowRightOutlined,
-  CalendarOutlined,
   CommentOutlined,
-  ProfileOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
-import { useGetNewsQuery } from "@/redux/api/api";
 
-const AllNews = ({ allNews }) => {
-  // const { data, isError, isLoading, error } = useGetNewsQuery();
-  // console.log(data);
+const AllCategories = ({ CategoriesData }) => {
   const { Meta } = Card;
+
+  const shuffledData = CategoriesData.map((item) => ({
+    item,
+    rand: Math.random(),
+  }))
+    .sort((a, b) => a.rand - b.rand)
+    .map((a) => a.item)
+    .slice(0, 6);
+
   return (
     <>
       <h1
@@ -22,7 +27,7 @@ const AllNews = ({ allNews }) => {
           margin: "30px 0px",
         }}
       >
-        #TODAY HIGHLIGHT
+        Feature Categories (6)
       </h1>
       <Row
         gutter={{
@@ -32,21 +37,35 @@ const AllNews = ({ allNews }) => {
           lg: 32,
         }}
       >
-        {allNews?.map((news) => (
-          <Col key={news.id} className="gutter-row" span={6}>
+        {shuffledData.map((pc) => (
+          <Col key={pc.category} className="gutter-row" span={8}>
             <Card
               hoverable
               cover={
                 <Image
-                  src={news?.image_url}
+                  src={pc?.image_url}
                   width={500}
-                  height={200}
+                  height={400}
                   responsive
-                  alt="news image"
+                  alt="PC image"
                 />
               }
             >
-              <Meta title={news?.title} />
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  margin: "10px 0px",
+                  fontSize: "16px",
+                  fontWeight: 800,
+                }}
+              >
+                <span>
+                  <Meta title={pc?.name} />
+                </span>
+                <span>Price : {pc?.price}</span>
+              </div>
               <div
                 className="line"
                 style={{
@@ -64,26 +83,21 @@ const AllNews = ({ allNews }) => {
                   width: "100%",
                   color: "gray",
                   margin: "10px 0px",
-                  fontSize: "12px",
+                  fontSize: "14px",
                 }}
               >
                 <span>
-                  <CalendarOutlined /> {news?.release_date}
+                  <CommentOutlined /> Categories : {pc?.category}
                 </span>
                 <span>
-                  <CommentOutlined /> {news?.comment_count} COMMENTS
+                  <ShoppingOutlined /> Status : {pc?.status}
                 </span>
                 <span>
-                  <ProfileOutlined /> {news?.category}
+                  <ShoppingOutlined /> Ratings : {pc?.average_rating}
                 </span>
               </p>
 
-              <p style={{ fontSize: "15px" }}>
-                {news?.description.length > 100
-                  ? news?.description.slice(0, 70) + "..."
-                  : news?.description}
-              </p>
-              <Link href={`/news/${news?.id}`}>
+              <Link href={`/pc/${pc?.id}`}>
                 <p
                   style={{
                     fontSize: "15px",
@@ -97,7 +111,7 @@ const AllNews = ({ allNews }) => {
                     textAlign: "center",
                   }}
                 >
-                  Keep Reading <ArrowRightOutlined />
+                  See Details <ArrowRightOutlined />
                 </p>
               </Link>
             </Card>
@@ -108,4 +122,4 @@ const AllNews = ({ allNews }) => {
   );
 };
 
-export default AllNews;
+export default AllCategories;
